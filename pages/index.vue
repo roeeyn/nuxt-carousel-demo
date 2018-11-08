@@ -1,34 +1,53 @@
 <template>
   <section class="container">
-    <div>
-      <logo/>
-      <h1 class="title">
-        japanese-swiper
-      </h1>
-      <h2 class="subtitle">
-        My delightful Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green">Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey">GitHub</a>
+    <div v-swiper:mySwiper="swiperOption">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide" v-for="banner in banners">
+        <img :src="banner">
       </div>
     </div>
+    <div class="swiper-pagination"></div>
+  </div>
   </section>
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
-
+// require styles
+import 'swiper/dist/css/swiper.css';
 export default {
-  components: {
-    Logo
-  }
+  data () {
+      return {
+        banners: [ 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150', 
+          'https://via.placeholder.com/150' 
+          ],
+        swiperOption: {
+          slidesPerView: 'auto',
+          centeredSlides: true,
+          spaceBetween: 30,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true
+          }
+          // some swiper options...
+        }
+      }
+    },
+    mounted() {
+      console.log(
+        'This is current swiper instance object', this.mySwiper, 
+        'It will slideTo banners 3')
+      this.mySwiper.slideTo(3, 1000, false)
+    }
 }
 </script>
 
