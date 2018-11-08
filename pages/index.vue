@@ -2,8 +2,11 @@
   <section class="container">
     <div v-swiper:mySwiper="swiperOption">
     <div class="swiper-wrapper">
-      <div class="swiper-slide" v-for="banner in banners">
-        <img :src="banner">
+      <div class="swiper-slide" v-for="(banner, index) in banners" :key="index">
+        <div>
+          <img :src="banner">
+          <h1>Tu titulo es {{ index }}</h1>
+        </div>
       </div>
     </div>
     <div class="swiper-pagination"></div>
@@ -12,8 +15,6 @@
 </template>
 
 <script>
-// require styles
-import 'swiper/dist/css/swiper.css';
 export default {
   data () {
       return {
@@ -31,9 +32,9 @@ export default {
           'https://via.placeholder.com/150' 
           ],
         swiperOption: {
-          slidesPerView: 'auto',
+          slidesPerView: 5,
           centeredSlides: true,
-          spaceBetween: 30,
+          spaceBetween: 50,
           pagination: {
             el: '.swiper-pagination',
             clickable: true
